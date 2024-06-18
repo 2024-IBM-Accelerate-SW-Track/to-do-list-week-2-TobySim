@@ -7,6 +7,9 @@ class AddTodo extends Component {
     super();
     this.state = {
       content: "",
+      date: "",
+      preConditions: "",
+      acceptanceCriteria: ""
     };
   }
   // The handleChange function updates the react state with the new input value provided from the user.
@@ -15,6 +18,7 @@ class AddTodo extends Component {
   handleChange = (event) => {
     this.setState({
       content: event.target.value,
+      date: new Date().toLocaleString('en-US')
     });
   };
   // The handleSubmit function collects the forms input and puts it into the react state.
@@ -27,6 +31,9 @@ class AddTodo extends Component {
       this.props.addTodo(this.state);
       this.setState({
         content: "",
+        date: "",
+        preConditions: "",
+        acceptanceCriteria: ""
       });
     }
   };
@@ -46,6 +53,24 @@ class AddTodo extends Component {
           onChange={this.handleChange}
           value={this.state.content}
           data-testid="new-item-textfield"
+        />
+        <TextField
+          label="Pre-Conditions"
+          variant="outlined"
+          id="preConditions"
+          onChange={this.handleChange}
+          value={this.state.preConditions}
+          data-testid="pre-conditions-textfield"
+          style={{ marginTop: 10 }}
+        />
+        <TextField
+          label="Acceptance Criteria"
+          variant="outlined"
+          id="acceptanceCriteria"
+          onChange={this.handleChange}
+          value={this.state.acceptanceCriteria}
+          data-testid="acceptance-criteria-textfield"
+          style={{ marginTop: 10 }}
         />
         <Button
           style={{ marginLeft: "10px" }}
